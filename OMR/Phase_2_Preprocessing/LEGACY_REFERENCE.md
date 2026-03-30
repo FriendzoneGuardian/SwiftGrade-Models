@@ -6,7 +6,7 @@ Standard histogram equalization computes a *global* mapping based on the entire
 image histogram:
 
 ```
-s = T(r) = (L − 1) · CDF(r)
+s = T(r) = (L - 1) · CDF(r)
 ```
 
 where `r` is the input intensity, `s` the output intensity, `L` the number of
@@ -27,7 +27,7 @@ and the excess counts are redistributed uniformly across all bins before the CDF
 is computed:
 
 ```
-excess = Σ max(0, H(i) − L_clip)   for all bins i
+excess = Σ max(0, H(i) - L_clip)   for all bins i
 H_clipped(i) = min(H(i), L_clip) + excess / num_bins
 ```
 

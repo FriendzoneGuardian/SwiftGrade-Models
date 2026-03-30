@@ -51,7 +51,7 @@ max_height = max( dist(top-right,    bottom-right),
                   dist(top-left,     bottom-left)  )
 ```
 
-where `dist(p1, p2) = √((p2.x − p1.x)² + (p2.y − p1.y)²)`.
+where `dist(p1, p2) = √((p2.x - p1.x)² + (p2.y - p1.y)²)`.
 
 This preserves the natural aspect ratio of the form region rather than forcing a
 fixed ratio that could distort bubble spacing.
