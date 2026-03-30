@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Model weights
+*.pt
+*.pth
+*.onnx
+
+# OS
+.DS_Store
+Thumbs.db
