@@ -1,0 +1,11 @@
+torch
+torchvision
+ultralytics
+opencv-python
+numpy
+Pillow
+matplotlib
+jupyter
+notebook
+ipykernel
+scipy
