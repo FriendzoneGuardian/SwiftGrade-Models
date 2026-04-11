@@ -3,9 +3,10 @@ Phase 2 – Preprocessing package.
 
 Public API
 ----------
-CLAHEPreprocessor : Applies multi-channel CLAHE in LAB colour space.
+OMRPreprocessor : Paper-aligned Phase 2 preprocessing pipeline.
+CLAHEPreprocessor : Backwards-compatible alias for OMRPreprocessor.
 """
 
-from .clahe_preprocessor import CLAHEPreprocessor
+from .preprocessor import CLAHEPreprocessor, OMRPreprocessor
 
-__all__ = ["CLAHEPreprocessor"]
+__all__ = ["OMRPreprocessor", "CLAHEPreprocessor"]
