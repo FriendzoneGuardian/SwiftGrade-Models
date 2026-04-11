@@ -28,9 +28,12 @@ import torch
 class PreprocessorDiagnostics:
     used_template_subtraction: bool
     variance: float
+    mean_gray: float
+    darkness_score: float
     solidity: float
     inner_mask_ratio: float
     flat_region: bool
+    likely_mark: bool
     subtraction_applied: bool
     blue_ratio: float
 
@@ -69,13 +72,15 @@ class OMRPreprocessor:
         clip_limit: float = 2.0,
         tile_grid_size: tuple[int, int] = (8, 8),
         denoise: bool = True,
-        inner_mask_ratio: float = 0.78,
-        variance_threshold: float = 200.0,
-        solidity_threshold: float = 0.72,
-        subtraction_threshold: float = 18.0,
-        subtraction_blend: float = 0.55,
-        blue_boost: bool = False,
-        blue_boost_strength: float = 0.12,
+        inner_mask_ratio: float = 0.60,
+        variance_threshold: float = 120.0,
+        darkness_threshold: float = 28.0,
+        blue_ratio_threshold: float = 0.08,
+        solidity_threshold: float = 0.68,
+        subtraction_threshold: float = 24.0,
+        subtraction_blend: float = 0.40,
+        blue_boost: bool = True,
+        blue_boost_strength: float = 0.22,
         template_path: str | Path | None = None,
     ) -> None:
         self.clip_limit = clip_limit
@@ -83,6 +88,8 @@ class OMRPreprocessor:
         self.denoise = denoise
         self.inner_mask_ratio = inner_mask_ratio
         self.variance_threshold = variance_threshold
+        self.darkness_threshold = darkness_threshold
+        self.blue_ratio_threshold = blue_ratio_threshold
         self.solidity_threshold = solidity_threshold
         self.subtraction_threshold = subtraction_threshold
         self.subtraction_blend = subtraction_blend
@@ -130,17 +137,28 @@ class OMRPreprocessor:
 
         masked_gray, mask = self._masked_gray(boosted_bgr)
         variance = float(masked_gray.var()) if masked_gray.size else 0.0
-        flat_region = variance < self.variance_threshold
+        mean_gray = float(masked_gray.mean()) if masked_gray.size else 255.0
+        darkness_score = 255.0 - mean_gray
         solidity = self._estimate_solidity(masked_gray, mask)
+        blue_ratio = self._blue_ratio(boosted_bgr)
+        likely_mark = (
+            variance >= self.variance_threshold
+            or darkness_score >= self.darkness_threshold
+            or blue_ratio >= self.blue_ratio_threshold
+        )
+        flat_region = not likely_mark
 
         diagnostics = PreprocessorDiagnostics(
             used_template_subtraction=used_template_subtraction,
             variance=variance,
+            mean_gray=mean_gray,
+            darkness_score=darkness_score,
             solidity=solidity,
             inner_mask_ratio=self.inner_mask_ratio,
             flat_region=flat_region,
+            likely_mark=likely_mark,
             subtraction_applied=subtraction_applied,
-            blue_ratio=self._blue_ratio(boosted_bgr),
+            blue_ratio=blue_ratio,
         )
 
         return boosted_bgr, diagnostics.__dict__
@@ -164,9 +182,11 @@ class OMRPreprocessor:
         return {
             "count": float(len(metrics)),
             "mean_variance": float(np.mean([item["variance"] for item in metrics])),
+            "mean_darkness_score": float(np.mean([item["darkness_score"] for item in metrics])),
             "mean_solidity": float(np.mean([item["solidity"] for item in metrics])),
             "mean_blue_ratio": float(np.mean([item["blue_ratio"] for item in metrics])),
             "flat_rate": float(np.mean([1.0 if item["flat_region"] else 0.0 for item in metrics])),
+            "likely_mark_rate": float(np.mean([1.0 if item["likely_mark"] else 0.0 for item in metrics])),
             "subtraction_rate": float(np.mean([1.0 if item["subtraction_applied"] else 0.0 for item in metrics])),
         }
 
@@ -212,7 +232,11 @@ class OMRPreprocessor:
             return image, False
 
         gated = np.where(diff > self.subtraction_threshold, diff, 0).astype(np.float32)
-        adjusted_gray = np.clip(image_gray.astype(np.float32) - gated * self.subtraction_blend, 0, 255)
+        # Keep subtraction conservative for subtle fills: strong template matches are
+        # suppressed, but low-level ink is allowed to survive.
+        blend_scale = min(1.0, mean_diff / max(self.subtraction_threshold * 2.0, 1.0))
+        effective_blend = self.subtraction_blend * blend_scale
+        adjusted_gray = np.clip(image_gray.astype(np.float32) - gated * effective_blend, 0, 255)
         adjusted_bgr = cv2.cvtColor(adjusted_gray.astype(np.uint8), cv2.COLOR_GRAY2BGR)
         return adjusted_bgr, True
 
