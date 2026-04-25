@@ -13,7 +13,7 @@ ClassificationTrainer      : Training wrapper with early stopping and checkpoint
 """
 
 from .bubble_classifier import BubbleClassifier
-from .cnn_models import AscendingCNN, DiamondCNN
+from .cnn_models import AscendingCNN, DiamondCNN, TransferLearningCNN
 from .dataset import build_dataset_index, create_dataloaders, resolve_phase3_dataset_root
 from .relative_row_scorer import RelativeRowScorer
 from .scoring import RelativeRowDecisionEngine
@@ -24,6 +24,7 @@ __all__ = [
     "RelativeRowScorer",
     "DiamondCNN",
     "AscendingCNN",
+    "TransferLearningCNN",
     "RelativeRowDecisionEngine",
     "ClassificationTrainer",
     "TrainerConfig",

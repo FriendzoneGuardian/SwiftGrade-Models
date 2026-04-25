@@ -17,3 +17,31 @@ This approach guarantees that visual data representations (like augmented crops,
     - `OMR/notebooks/`: The execution ground layer! Run all your pipeline tests from here.
     - `OMR/Documentations/`: Where we store all our Vibe Coding design patterns and Agent logic.
 - `Unified_Datasets/`: The centralized storage for Phase 1 Raw, Phase 2 Cropped, and Phase 3 Ready dataset iterations.
+
+## Implementation Start (Current)
+
+Use this quick start to validate environment readiness before notebook execution.
+
+1. Create and activate a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+2. Run Phase A preflight gate:
+
+```bash
+python OMR/scripts/preflight_check.py
+```
+
+3. Run Phase 3 smoke training (fallback path via `Unified_Datasets/manual_labeled`):
+
+```bash
+python OMR/scripts/phase3_smoke_train.py --epochs 1 --sample-limit 2000 --batch-size 32
+```
+
+Notes:
+- The smoke script mirrors the consolidated Phase 3 notebook flow and writes artifacts under `OMR/runs/<timestamp>/`.
+- Full Phase 1 extraction still requires your trained OMR detector weights (`.pt`).

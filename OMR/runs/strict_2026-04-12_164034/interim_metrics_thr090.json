@@ -1,0 +1,134 @@
+{
+  "run_dir": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_164034",
+  "checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_164034/models/best_model.pth",
+  "class_to_idx": {
+    "blank": 0,
+    "filled": 1
+  },
+  "threshold_090_metrics": {
+    "threshold": 0.9,
+    "samples": 23262,
+    "tp": 4230,
+    "fp": 113,
+    "tn": 18184,
+    "fn": 735,
+    "precision_filled": 0.9739811190421368,
+    "recall_filled": 0.851963746223565,
+    "accuracy": 0.9635456968446393
+  },
+  "threshold_sweep": [
+    {
+      "threshold": 0.5,
+      "samples": 23262,
+      "tp": 4777,
+      "fp": 488,
+      "tn": 17809,
+      "fn": 188,
+      "precision_filled": 0.907312440645774,
+      "recall_filled": 0.962134944612286,
+      "accuracy": 0.9709397300318116
+    },
+    {
+      "threshold": 0.55,
+      "samples": 23262,
+      "tp": 4750,
+      "fp": 443,
+      "tn": 17854,
+      "fn": 215,
+      "precision_filled": 0.9146928557673791,
+      "recall_filled": 0.9566968781470292,
+      "accuracy": 0.9717135242025621
+    },
+    {
+      "threshold": 0.6,
+      "samples": 23262,
+      "tp": 4728,
+      "fp": 380,
+      "tn": 17917,
+      "fn": 237,
+      "precision_filled": 0.9256068911511355,
+      "recall_filled": 0.9522658610271904,
+      "accuracy": 0.9734760553692717
+    },
+    {
+      "threshold": 0.65,
+      "samples": 23262,
+      "tp": 4672,
+      "fp": 313,
+      "tn": 17984,
+      "fn": 293,
+      "precision_filled": 0.9372116349047142,
+      "recall_filled": 0.9409869083585096,
+      "accuracy": 0.9739489295847304
+    },
+    {
+      "threshold": 0.7,
+      "samples": 23262,
+      "tp": 4604,
+      "fp": 273,
+      "tn": 18024,
+      "fn": 361,
+      "precision_filled": 0.9440229649374615,
+      "recall_filled": 0.9272910372608257,
+      "accuracy": 0.9727452497635629
+    },
+    {
+      "threshold": 0.75,
+      "samples": 23262,
+      "tp": 4530,
+      "fp": 228,
+      "tn": 18069,
+      "fn": 435,
+      "precision_filled": 0.9520807061790668,
+      "recall_filled": 0.9123867069486404,
+      "accuracy": 0.9714985813773537
+    },
+    {
+      "threshold": 0.8,
+      "samples": 23262,
+      "tp": 4467,
+      "fp": 190,
+      "tn": 18107,
+      "fn": 498,
+      "precision_filled": 0.9592012024908739,
+      "recall_filled": 0.8996978851963746,
+      "accuracy": 0.9704238672513111
+    },
+    {
+      "threshold": 0.85,
+      "samples": 23262,
+      "tp": 4392,
+      "fp": 158,
+      "tn": 18139,
+      "fn": 573,
+      "precision_filled": 0.9652747252747252,
+      "recall_filled": 0.8845921450151057,
+      "accuracy": 0.9685753589545181
+    },
+    {
+      "threshold": 0.9,
+      "samples": 23262,
+      "tp": 4230,
+      "fp": 113,
+      "tn": 18184,
+      "fn": 735,
+      "precision_filled": 0.9739811190421368,
+      "recall_filled": 0.851963746223565,
+      "accuracy": 0.9635456968446393
+    },
+    {
+      "threshold": 0.95,
+      "samples": 23262,
+      "tp": 3965,
+      "fp": 78,
+      "tn": 18219,
+      "fn": 1000,
+      "precision_filled": 0.9807073954983923,
+      "recall_filled": 0.798590130916415,
+      "accuracy": 0.9536583268850486
+    }
+  ],
+  "grid_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_164034/proof_grid_200_interim_thr090.png",
+  "grid_false_count": 8,
+  "grid_count": 200
+}

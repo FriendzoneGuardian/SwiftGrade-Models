@@ -1,80 +1,15 @@
-"""
-cnn_models.py - PyTorch model definitions for Phase 3 classification.
+"""Compatibility facade for Phase 3 model architectures.
 
-Provides two architectures requested by the project plan:
-- DiamondCNN (expand then contract)
-- AscendingCNN (monotonic expansion)
+Canonical implementations live in dedicated modules:
+- diamond.py
+- ascending.py
+- transfer_learning.py
 """
 
 from __future__ import annotations
 
-import torch
-import torch.nn as nn
+from ascending import AscendingCNN
+from diamond import DiamondCNN
+from transfer_learning import TransferLearningCNN
 
-
-class ConvBlock(nn.Module):
-    def __init__(self, in_channels: int, out_channels: int, dropout: float = 0.0) -> None:
-        super().__init__()
-        layers: list[nn.Module] = [
-            nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1, bias=False),
-            nn.BatchNorm2d(out_channels),
-            nn.ReLU(inplace=True),
-            nn.MaxPool2d(kernel_size=2, stride=2),
-        ]
-        if dropout > 0.0:
-            layers.append(nn.Dropout2d(p=dropout))
-        self.net = nn.Sequential(*layers)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.net(x)
-
-
-class DiamondCNN(nn.Module):
-    """Diamond profile: 3 -> 32 -> 64 -> 128 -> 64 -> 32."""
-
-    def __init__(self, num_classes: int = 2, dropout: float = 0.2) -> None:
-        super().__init__()
-        self.features = nn.Sequential(
-            ConvBlock(3, 32, dropout=dropout),
-            ConvBlock(32, 64, dropout=dropout),
-            ConvBlock(64, 128, dropout=dropout),
-            ConvBlock(128, 64, dropout=dropout),
-            ConvBlock(64, 32, dropout=dropout),
-        )
-        self.head = nn.Sequential(
-            nn.AdaptiveAvgPool2d((1, 1)),
-            nn.Flatten(),
-            nn.Linear(32, 64),
-            nn.ReLU(inplace=True),
-            nn.Dropout(p=0.35),
-            nn.Linear(64, num_classes),
-        )
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.features(x)
-        return self.head(x)
-
-
-class AscendingCNN(nn.Module):
-    """Ascending profile: 3 -> 32 -> 64 -> 128 -> 256."""
-
-    def __init__(self, num_classes: int = 2, dropout: float = 0.2) -> None:
-        super().__init__()
-        self.features = nn.Sequential(
-            ConvBlock(3, 32, dropout=dropout),
-            ConvBlock(32, 64, dropout=dropout),
-            ConvBlock(64, 128, dropout=dropout),
-            ConvBlock(128, 256, dropout=dropout),
-        )
-        self.head = nn.Sequential(
-            nn.AdaptiveAvgPool2d((1, 1)),
-            nn.Flatten(),
-            nn.Linear(256, 128),
-            nn.ReLU(inplace=True),
-            nn.Dropout(p=0.4),
-            nn.Linear(128, num_classes),
-        )
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.features(x)
-        return self.head(x)
+__all__ = ["DiamondCNN", "AscendingCNN", "TransferLearningCNN"]
