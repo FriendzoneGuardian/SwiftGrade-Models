@@ -1,0 +1,7 @@
+{
+  "run_id": "strict_replace_me",
+  "strict_report": "OMR/runs/strict_replace_me/strict_pipeline_report.json",
+  "best_checkpoint": "OMR/runs/strict_replace_me/models/best_model.pth",
+  "recommended_threshold_path": "recommended_threshold.threshold",
+  "assessment_path": "standard_assessment.summary"
+}
