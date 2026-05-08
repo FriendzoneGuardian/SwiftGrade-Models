@@ -46,8 +46,8 @@
       "blank",
       "filled"
     ],
-    "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/models/best_model.pth",
-    "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/models/training_epoch_metrics.jsonl",
+    "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/best_model.pth",
+    "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/training_epoch_metrics.jsonl",
     "history": [
       {
         "epoch": 1,
@@ -1013,7 +1013,7 @@
   "grid_200": {
     "grid_count": 200,
     "false_count": 3,
-    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/proof_grid_200.png"
+    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/proof_grid_200.png"
   },
   "grid_200_sorter_buckets": {
     "grid_count": 200,
@@ -1031,6 +1031,6 @@
     },
     "darkness_q40": 0.464599609375,
     "darkness_q60": 0.485595703125,
-    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/proof_grid_200_sorter_buckets.png"
+    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/proof_grid_200_sorter_buckets.png"
   }
 }

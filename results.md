@@ -1,60 +1,46 @@
-# Test 77 - Phase 3 Ascending Model (Strict Protocol)
+# Runs (Official Sequence, Latest-First)
 
-Date: 2026-04-19
-Status: COMPLETED
+Date: 2026-05-08
+Status: BACKPROPAGATED
 
-## Objective
-Run Phase 3 strict benchmark using the Ascending model with the same unified evaluation protocol used for the prior Diamond benchmark, then export the best checkpoint to ONNX.
+## Official Runs (Backwards Count)
+- #78: Ascending Success (without ONNX)
+  - Run directory: OMR/runs/Run 78 - 041926_134913-Ascending-Success
+  - Model: AscendingCNN
+  - Basis: strict pipeline `standard_assessment.summary = PASS`
 
-## Executed Command
-```bash
-source .venv/bin/activate && python OMR/scripts/strict_phase2_phase3_gpu_test.py --model-method ascending --epochs 100 --patience 20 --ground-truth-basis --target-augmented 169125 --decision-floor 0.75
-```
+- #77: Diamond Preliminary Failed
+  - Run directory: OMR/runs/Run 77 - 041226_165618-Diamond-Failed
+  - Model: DiamondCNN
+  - Artifact: OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/diamondcnn_test77_preliminary_failed.onnx
+  - Basis: preliminary failed research artifact
 
-## Final Run Summary
-- Run directory: OMR/runs/strict_2026-04-19_134913
-- Model: AscendingCNN
-- Epochs requested: 100
-- Epochs ran: 100
-- Early stopping patience: 20
-- Ground-truth basis mode: enabled
-- Augmented samples: 169125
-- Standard assessment: PASS
+- #76: Diamond Success (with ONNX)
+  - Run directory: OMR/runs/Run 76 - 041226_152601-Diamond-Success
+  - Model: DiamondCNN
+  - ONNX file: OMR/runs/Run 76 - 041226_152601-Diamond-Success/models/best_model.onnx
+  - Basis: strict pipeline `standard_assessment.summary = PASS`
 
-## Core Metrics
-- Best epoch: 88
-- Best validation F1 (monitor metric): 0.9757324313057165
-- Final validation accuracy: 0.9833259423503325
-- Final validation F1: 0.9750703174044788
+## MobileNet Smoke Tests (79+)
+- #85: Run 85 - 050826_102802-MobileNetV2-Failed
+- #84: Run 84 - 050826_102709-MobileNetV2-Failed
+- #83: Run 83 - 050826_102448-MobileNetV2-Failed
+- #82: Run 82 - 050826_102108-MobileNetV2-Failed
+- #81: Run 81 - 050826_101929-MobileNetV2-Failed
+- #80: Run 80 - 050826_101848-MobileNetV2-Failed
+- #79: Run 79 - 050826_101534-MobileNetV2-Failed
 
-## Unified Decision Metrics
-- Recommended threshold: 0.8
-- Threshold samples: 33825
-- TP: 6653
-- FP: 125
-- TN: 26480
-- FN: 567
-- Filled precision: 0.9815579817055179
-- Filled recall: 0.9214681440443213
-- Threshold accuracy: 0.9795417590539541
-
-## Proof Artifacts
-- Strict report: OMR/runs/strict_2026-04-19_134913/strict_pipeline_report.json
-- Training summary: OMR/runs/strict_2026-04-19_134913/models/training_summary.json
-- Training history: OMR/runs/strict_2026-04-19_134913/models/training_epoch_metrics.jsonl
-- Proof grid (200): OMR/runs/strict_2026-04-19_134913/proof_grid_200.png
-- Grid false count: 2
-- Bucketed proof grid (200): OMR/runs/strict_2026-04-19_134913/proof_grid_200_sorter_buckets.png
-
-## ONNX Export
-- ONNX file: OMR/runs/strict_2026-04-19_134913/models/ascendingcnn_test77.onnx
-- Export source checkpoint: OMR/runs/strict_2026-04-19_134913/models/best_model.pth
-- ONNX size (bytes): 35207
-- ONNX checker: PASS
-- Opset: ai.onnx v18
-- Input name: input
-- Output name: logits
+## Auxiliary Runs (Labelled, Failed)
+- #75: Run 75 - 041926_133036-TransferLearning-Failed
+- #74: Run 74 - 041926_133010-Diamond-Failed
+- #73: Run 73 - 041926_132939-Ascending-Failed
+- #72: Run 72 - 041926_132923-Preflight-Failed
+- #71: Run 71 - 041226_164034-Diamond-Failed
+- #70: Run 70 - 041226_163905-Diamond-Failed
+- #69: Run 69 - 041226_162804-Diamond-Failed
 
 ## Notes
-- Strict runner now supports explicit model methods: diamond, ascending, transfer.
-- This run used the same unified evaluation path and artifact outputs as the prior strict Diamond workflow.
+- Official strict lineage remains `#76`, `#77`, `#78`.
+- MobileNet smoke tests are explicitly labelled `#79` and above.
+- Auxiliary runs are now explicitly labelled as `#75` and below.
+- Display is reverse count order to match backward tracking.

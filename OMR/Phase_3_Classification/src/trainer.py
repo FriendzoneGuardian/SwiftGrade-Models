@@ -94,8 +94,7 @@ class ClassificationTrainer:
                 train_mode=False,
             )
 
-            if scheduler is not None:
-                scheduler.step()
+            
 
             epoch_metrics = {
                 "epoch": epoch,
@@ -111,8 +110,15 @@ class ClassificationTrainer:
             self._append_jsonl(self.metrics_jsonl_path, epoch_metrics)
 
             monitor_value = float(epoch_metrics.get(self.config.monitor_metric, valid_metrics["f1"]))
-            improved = monitor_value > (best_metric + self.config.early_stopping_min_delta)
+            # Step scheduler with metric if required by its API (e.g., ReduceLROnPlateau)
+            if scheduler is not None:
+                try:
+                    scheduler.step(monitor_value)
+                except TypeError:
+                    # Older/newer schedulers may accept no-arg step()
+                    scheduler.step()
 
+            improved = monitor_value > (best_metric + self.config.early_stopping_min_delta)
             if improved:
                 best_metric = monitor_value
                 best_epoch = epoch

@@ -48,8 +48,8 @@
       "blank",
       "filled"
     ],
-    "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-19_134913/models/best_model.pth",
-    "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-19_134913/models/training_epoch_metrics.jsonl",
+    "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/Run 78 - 041926_134913-Ascending-Success/models/best_model.pth",
+    "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/Run 78 - 041926_134913-Ascending-Success/models/training_epoch_metrics.jsonl",
     "history": [
       {
         "epoch": 1,
@@ -1205,7 +1205,7 @@
   "grid_200": {
     "grid_count": 200,
     "false_count": 2,
-    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-19_134913/proof_grid_200.png"
+    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/Run 78 - 041926_134913-Ascending-Success/proof_grid_200.png"
   },
   "grid_200_sorter_buckets": {
     "grid_count": 200,
@@ -1223,6 +1223,6 @@
     },
     "darkness_q40": 0.465576171875,
     "darkness_q60": 0.4856933593749999,
-    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-19_134913/proof_grid_200_sorter_buckets.png"
+    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/Run 78 - 041926_134913-Ascending-Success/proof_grid_200_sorter_buckets.png"
   }
 }

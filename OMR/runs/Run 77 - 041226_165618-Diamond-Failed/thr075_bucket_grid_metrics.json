@@ -1,5 +1,5 @@
 {
-  "run_dir": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618",
+  "run_dir": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed",
   "threshold": 0.75,
   "grid_200_sorter_buckets_thr075": {
     "grid_count": 200,
@@ -17,7 +17,7 @@
     },
     "darkness_q40": 0.464599609375,
     "darkness_q60": 0.485595703125,
-    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/proof_grid_200_sorter_buckets_thr075.png"
+    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/proof_grid_200_sorter_buckets_thr075.png"
   },
   "min_confidence": {
     "blank_class_on_blank_bucket": 0.0010999441146850586,

@@ -3,7 +3,7 @@
   "status": "FAILED_PRELIMINARY_RESEARCH_ARTIFACT",
   "release_policy": "PRELIMINARY_ONLY_NOT_PRODUCTION_RELEASE",
   "purpose": "OMR module checkpoint for thesis submission, not final deployment.",
-  "source_run": "strict_2026-04-12_165618",
+  "source_run": "Run 77 - 041226_165618-Diamond-Failed",
   "model_name": "DiamondCNN",
   "opset_version": 17,
   "input_spec": {
@@ -31,8 +31,8 @@
     "invalid_class_evaluation": "pending"
   },
   "backing_report_files": {
-    "training_summary": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/models/training_summary.json",
-    "strict_pipeline_report": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/strict_pipeline_report.json",
-    "threshold75_bucket_metrics": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/thr075_bucket_grid_metrics.json"
+    "training_summary": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/training_summary.json",
+    "strict_pipeline_report": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/strict_pipeline_report.json",
+    "threshold75_bucket_metrics": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/thr075_bucket_grid_metrics.json"
   }
 }

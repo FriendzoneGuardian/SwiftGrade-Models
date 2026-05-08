@@ -1,0 +1,24 @@
+{
+  "best_epoch": 1,
+  "best_metric": 0.43661971830985913,
+  "monitor_metric": "val_f1",
+  "epochs_ran": 1,
+  "class_names": [
+    "blank",
+    "filled"
+  ],
+  "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/Run 80 - 050826_101848-MobileNetV2-Failed/models/phase_a/best_model.pth",
+  "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/Run 80 - 050826_101848-MobileNetV2-Failed/models/phase_a/training_epoch_metrics.jsonl",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.465395575761795,
+      "train_acc": 0.80625,
+      "train_f1": 0.6384576135286828,
+      "val_loss": 0.6566834847132365,
+      "val_acc": 0.775,
+      "val_f1": 0.43661971830985913,
+      "timestamp_utc": "2026-05-08T10:18:50.422753Z"
+    }
+  ]
+}

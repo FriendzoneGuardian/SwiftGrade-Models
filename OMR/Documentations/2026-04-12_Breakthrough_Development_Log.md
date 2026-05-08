@@ -21,7 +21,7 @@ This entry documents a validated breakthrough in the Phase 3 OMR classification 
 - Bucket accounting includes: light filled, dark filled, blank, invalid (when available in labels).
 
 ## Breakthrough Run Snapshot
-Run: `OMR/runs/strict_2026-04-12_152601`
+Run: `OMR/runs/Run 76 - 041226_152601-Diamond-Success`
 
 - Ground-truth mode: enabled
 - Standard assessment: PASS
@@ -35,8 +35,8 @@ At threshold 0.80:
 - Accuracy: 0.9526
 
 Grid outputs:
-- `OMR/runs/strict_2026-04-12_152601/proof_grid_200.png`
-- `OMR/runs/strict_2026-04-12_152601/proof_grid_200_sorter_buckets.png`
+- `OMR/runs/Run 76 - 041226_152601-Diamond-Success/proof_grid_200.png`
+- `OMR/runs/Run 76 - 041226_152601-Diamond-Success/proof_grid_200_sorter_buckets.png`
 
 ## ONNX Export Readiness Assessment
 Status: Verified ready.
@@ -44,7 +44,7 @@ Status: Verified ready.
 A direct export from the best checkpoint was executed and validated.
 
 Generated artifact:
-- `OMR/runs/strict_2026-04-12_152601/models/best_model.onnx`
+- `OMR/runs/Run 76 - 041226_152601-Diamond-Success/models/best_model.onnx`
 
 Validation result:
 - ONNX checker: PASS

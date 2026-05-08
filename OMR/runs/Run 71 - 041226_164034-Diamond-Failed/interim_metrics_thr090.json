@@ -1,6 +1,6 @@
 {
-  "run_dir": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_164034",
-  "checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_164034/models/best_model.pth",
+  "run_dir": "/root/projects/SwiftGrade-Models/OMR/runs/Run 71 - 041226_164034-Diamond-Failed",
+  "checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/Run 71 - 041226_164034-Diamond-Failed/models/best_model.pth",
   "class_to_idx": {
     "blank": 0,
     "filled": 1
@@ -128,7 +128,7 @@
       "accuracy": 0.9536583268850486
     }
   ],
-  "grid_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_164034/proof_grid_200_interim_thr090.png",
+  "grid_path": "/root/projects/SwiftGrade-Models/OMR/runs/Run 71 - 041226_164034-Diamond-Failed/proof_grid_200_interim_thr090.png",
   "grid_false_count": 8,
   "grid_count": 200
 }

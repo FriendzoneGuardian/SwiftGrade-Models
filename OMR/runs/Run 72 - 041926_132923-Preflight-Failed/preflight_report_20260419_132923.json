@@ -21,10 +21,10 @@
   "assets": {
     "yolo_weights_pt": [],
     "classifier_weights_pth": [
-      "OMR/runs/strict_2026-04-12_152601/models/best_model.pth",
-      "OMR/runs/strict_2026-04-12_162804/models/best_model.pth",
-      "OMR/runs/strict_2026-04-12_164034/models/best_model.pth",
-      "OMR/runs/strict_2026-04-12_165618/models/best_model.pth"
+      "OMR/runs/Run 76 - 041226_152601-Diamond-Success/models/best_model.pth",
+      "OMR/runs/Run 69 - 041226_162804-Diamond-Failed/models/best_model.pth",
+      "OMR/runs/Run 71 - 041226_164034-Diamond-Failed/models/best_model.pth",
+      "OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/best_model.pth"
     ]
   },
   "checks": {

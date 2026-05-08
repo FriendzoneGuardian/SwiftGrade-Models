@@ -1,4 +1,4 @@
-# ONNX Export Metadata - Test #76 (Preliminary, Failed)
+# ONNX Export Metadata - Test #77 (Preliminary, Failed)
 
 ## Release Label
 - PRELIMINARY RESEARCH ARTIFACT - NOT PRODUCTION RELEASE
@@ -7,11 +7,11 @@
 - OMR module checkpoint for thesis submission, not final deployment.
 
 ## Source Run
-- strict_2026-04-12_165618
+- Run 77 - 041226_165618-Diamond-Failed
 
 ## Export Output
-- ONNX: /root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/models/diamondcnn_test76_preliminary_failed.onnx
-- Metadata JSON: /root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/models/diamondcnn_test76_preliminary_failed.onnx.metadata.json
+- ONNX: /root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/diamondcnn_test77_preliminary_failed.onnx
+- Metadata JSON: /root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/diamondcnn_test77_preliminary_failed.onnx.metadata.json
 
 ## Declared Metrics (for thesis record)
 - val F1: 0.972

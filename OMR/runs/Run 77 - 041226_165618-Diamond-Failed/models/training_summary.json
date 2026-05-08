@@ -7,8 +7,8 @@
     "blank",
     "filled"
   ],
-  "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/models/best_model.pth",
-  "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/models/training_epoch_metrics.jsonl",
+  "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/best_model.pth",
+  "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/training_epoch_metrics.jsonl",
   "history": [
     {
       "epoch": 1,

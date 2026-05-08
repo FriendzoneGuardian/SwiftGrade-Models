@@ -7,8 +7,8 @@
     "blank",
     "filled"
   ],
-  "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-19_134913/models/best_model.pth",
-  "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-19_134913/models/training_epoch_metrics.jsonl",
+  "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/Run 78 - 041926_134913-Ascending-Success/models/best_model.pth",
+  "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/Run 78 - 041926_134913-Ascending-Success/models/training_epoch_metrics.jsonl",
   "history": [
     {
       "epoch": 1,
