@@ -1,0 +1,230 @@
+{
+  "project_root": "/root/projects/SwiftGrade-Models",
+  "source_root": "/root/projects/SwiftGrade-Models/Unified_Datasets/manual_labeled",
+  "phase2_output": "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_2_Cropped",
+  "phase3_ready": "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_3_Ready",
+  "phase3_reject": "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_3_Rejects",
+  "gpu": {
+    "cuda_available": true,
+    "device": "NVIDIA GeForce GTX 1650"
+  },
+  "ground_truth_basis": true,
+  "augmentation": {
+    "source_count": 116313,
+    "augmented_count": 169125,
+    "labeled_augmented_count": 169125,
+    "reused_existing": true,
+    "expected_augmented": 116313
+  },
+  "purge": {
+    "mode": "ground_truth_basis",
+    "bypassed": true,
+    "total": 0,
+    "kept_filled": 0,
+    "kept_blank": 0,
+    "kept_uncertain": 0,
+    "rejected": 0
+  },
+  "class_to_idx": {
+    "blank": 0,
+    "filled": 1
+  },
+  "train_batches": 5816,
+  "valid_batches": 1454,
+  "diamond_train_summary": {
+    "best_epoch": 1,
+    "best_metric": 0.9519317807620464,
+    "monitor_metric": "val_f1",
+    "epochs_ran": 1,
+    "class_names": [
+      "blank",
+      "filled"
+    ],
+    "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_152601/models/best_model.pth",
+    "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_152601/models/training_epoch_metrics.jsonl",
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.1071391834047672,
+        "train_acc": 0.9628053433063589,
+        "train_f1": 0.9452957096374004,
+        "val_loss": 0.08293678151156005,
+        "val_acc": 0.9675436333935173,
+        "val_f1": 0.9519317807620464,
+        "timestamp_utc": "2026-04-12T07:27:54.595974Z"
+      }
+    ]
+  },
+  "threshold_sweep": [
+    {
+      "threshold": 0.5,
+      "samples": 23262,
+      "tp": 4625,
+      "fp": 415,
+      "tn": 17882,
+      "fn": 340,
+      "precision_filled": 0.9176587301587301,
+      "recall_filled": 0.9315206445115811,
+      "accuracy": 0.9675436333935173
+    },
+    {
+      "threshold": 0.55,
+      "samples": 23262,
+      "tp": 4507,
+      "fp": 313,
+      "tn": 17984,
+      "fn": 458,
+      "precision_filled": 0.9350622406639004,
+      "recall_filled": 0.907754279959718,
+      "accuracy": 0.9668558163528501
+    },
+    {
+      "threshold": 0.6,
+      "samples": 23262,
+      "tp": 4397,
+      "fp": 245,
+      "tn": 18052,
+      "fn": 568,
+      "precision_filled": 0.9472210254200776,
+      "recall_filled": 0.8855991943605237,
+      "accuracy": 0.9650502966210988
+    },
+    {
+      "threshold": 0.65,
+      "samples": 23262,
+      "tp": 4285,
+      "fp": 202,
+      "tn": 18095,
+      "fn": 680,
+      "precision_filled": 0.9549810563851125,
+      "recall_filled": 0.8630412890231621,
+      "accuracy": 0.9620840856332216
+    },
+    {
+      "threshold": 0.7,
+      "samples": 23262,
+      "tp": 4184,
+      "fp": 173,
+      "tn": 18124,
+      "fn": 781,
+      "precision_filled": 0.9602937801239385,
+      "recall_filled": 0.84269889224572,
+      "accuracy": 0.9589889089502193
+    },
+    {
+      "threshold": 0.75,
+      "samples": 23262,
+      "tp": 4088,
+      "fp": 135,
+      "tn": 18162,
+      "fn": 877,
+      "precision_filled": 0.9680322045938906,
+      "recall_filled": 0.8233635448136959,
+      "accuracy": 0.9564955721778007
+    },
+    {
+      "threshold": 0.8,
+      "samples": 23262,
+      "tp": 3964,
+      "fp": 102,
+      "tn": 18195,
+      "fn": 1001,
+      "precision_filled": 0.9749139203148057,
+      "recall_filled": 0.7983887210473313,
+      "accuracy": 0.9525836127590062
+    },
+    {
+      "threshold": 0.85,
+      "samples": 23262,
+      "tp": 3805,
+      "fp": 78,
+      "tn": 18219,
+      "fn": 1160,
+      "precision_filled": 0.9799124388359516,
+      "recall_filled": 0.7663645518630413,
+      "accuracy": 0.9467801564783768
+    },
+    {
+      "threshold": 0.9,
+      "samples": 23262,
+      "tp": 3588,
+      "fp": 55,
+      "tn": 18242,
+      "fn": 1377,
+      "precision_filled": 0.9849025528410651,
+      "recall_filled": 0.7226586102719034,
+      "accuracy": 0.9384403748602872
+    },
+    {
+      "threshold": 0.95,
+      "samples": 23262,
+      "tp": 3182,
+      "fp": 32,
+      "tn": 18265,
+      "fn": 1783,
+      "precision_filled": 0.9900435594275047,
+      "recall_filled": 0.6408862034239677,
+      "accuracy": 0.9219757544493165
+    }
+  ],
+  "recommended_threshold": {
+    "threshold": 0.8,
+    "samples": 23262,
+    "tp": 3964,
+    "fp": 102,
+    "tn": 18195,
+    "fn": 1001,
+    "precision_filled": 0.9749139203148057,
+    "recall_filled": 0.7983887210473313,
+    "accuracy": 0.9525836127590062
+  },
+  "threshold_policy": {
+    "requested_floor": 0.8,
+    "start_threshold": 0.8,
+    "selected_threshold": 0.8,
+    "start_accuracy": 0.9525836127590062,
+    "floor_met_at_start": true,
+    "adjusted": false,
+    "reason": "start-threshold-meets-floor"
+  },
+  "standard_assessment": {
+    "floor": 0.8,
+    "val_acc": 0.9675436333935173,
+    "val_f1": 0.9519317807620464,
+    "pass": true,
+    "summary": "PASS",
+    "selected_threshold": 0.8,
+    "threshold_policy": {
+      "requested_floor": 0.8,
+      "start_threshold": 0.8,
+      "selected_threshold": 0.8,
+      "start_accuracy": 0.9525836127590062,
+      "floor_met_at_start": true,
+      "adjusted": false,
+      "reason": "start-threshold-meets-floor"
+    }
+  },
+  "grid_200": {
+    "grid_count": 200,
+    "false_count": 8,
+    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_152601/proof_grid_200.png"
+  },
+  "grid_200_sorter_buckets": {
+    "grid_count": 200,
+    "bucket_counts": {
+      "light_filled": 59,
+      "dark_filled": 50,
+      "blank": 91,
+      "invalid": 0
+    },
+    "bucket_available": {
+      "light_filled": 1992,
+      "dark_filled": 1991,
+      "blank": 18297,
+      "invalid": 0
+    },
+    "darkness_q40": 0.464599609375,
+    "darkness_q60": 0.485595703125,
+    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_152601/proof_grid_200_sorter_buckets.png"
+  }
+}

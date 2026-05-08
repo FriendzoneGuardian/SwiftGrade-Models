@@ -33,7 +33,10 @@ Project-SwiftGrade-Vision/
 │   │
 │   └── Phase_3_Classification/  # PyTorch CNN & Decision Engine
 │       └── src/
-│           ├── cnn_models.py    # Diamond/Ascending CNN (PyTorch)
+│           ├── diamond.py       # Diamond CNN methodology (PyTorch)
+│           ├── ascending.py     # Ascending CNN methodology (PyTorch)
+│           ├── transfer_learning.py  # ResNet18 transfer methodology
+│           ├── cnn_models.py    # Compatibility facade/re-exports
 │           ├── dataset.py       # PyTorch DataLoaders
 │           ├── trainer.py       # MLflow/TensorBoard training loop
 │           └── scoring.py       # Relative Row Scoring Rules
@@ -74,7 +77,7 @@ Project-SwiftGrade-Vision/
 
 ### Step 5: Architect Phase 3 (Classification)
 - Build out the dataset purger logic (calculating Solidity to remove noise).
-- Implement the baseline PyTorch models (e.g., Ascending/Diamond CNN).
+- Implement and maintain separate methodology modules for Diamond, Ascending, and Transfer Learning.
 - Wire in the Decision Engine to execute **Relative Row Scoring** across the extracted row inputs.
 
 ---

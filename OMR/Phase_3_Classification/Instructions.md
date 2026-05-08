@@ -19,27 +19,41 @@ From our previous deep-dive experiments (documented in `Phase3_Classification_Ma
 
 To the agent working on Phase 3, you must create the following files inside `src/`. **Do not write batch executors in these files; they must be importable classes for our Jupyter Notebooks.**
 
-### A) `cnn_models.py`
-- Define the PyTorch `nn.Module` classes for the **Diamond CNN** and **Ascending CNN**.
-- Ensure they are built to accept the exact dimensional tensor outputs produced by Phase 2 (Preprocessing).
-- Include standard `forward` passes and layer normalization.
+### A) `diamond.py`
+- Define the PyTorch `nn.Module` class for the **Diamond CNN** only.
+- Preserve depth profiles and pooling schedules used by production smoke runs.
+- Keep constructor parameters stable for trainer/script compatibility.
 
-### B) `dataset.py`
+### B) `ascending.py`
+- Define the PyTorch `nn.Module` class for the **Ascending CNN** only.
+- Ensure it accepts the exact tensor dimensions produced by Phase 2.
+- Keep a standard forward pass and regularization behavior.
+
+### C) `transfer_learning.py`
+- Define the PyTorch `nn.Module` class for the **Transfer Learning** methodology.
+- Use ResNet-18 with compatibility logic for torchvision weight APIs.
+- Provide a frozen-backbone default, with explicit unfreeze control for fine-tuning cycles.
+
+### D) `cnn_models.py`
+- Keep this file as a compatibility facade/registry that re-exports Diamond, Ascending, and Transfer Learning classes.
+- Do not place architecture internals here after separation.
+
+### E) `dataset.py`
 - Build a custom PyTorch `Dataset` class (`OMRDataset`) and dataloaders.
 - It must ingest imagery from the `Unified_Datasets/Phase_3_Ready/` folder.
 - Ensure the dataloader integrates seamlessly with `albumentations` for on-the-fly, real-time dataset jitter, rotation (±20° limits), and noise injection.
 
-### C) `purge_data.py` (Script)
+### F) `purge_data.py` (Script)
 - We need a one-off utility script that reads `Unified_Datasets/Phase_2_Cropped/` and mathematically calculates the **Solidity** of every bubble.
 - If the solidity gating confirms it is just a printed ring or a "ghost erasure", it should forcefully relabel it as `Blank` or move it to a rejection folder before creating the final `Phase_3_Ready` dataset. (This is the "Extreme Cleaning" step).
 
-### D) `scoring.py` (The Decision Engine)
+### G) `scoring.py` (The Decision Engine)
 - Build the `RelativeRowScorer` class.
 - It takes a tensor of predictions (5 probabilities for a 5-bubble row).
 - **Logic:** Sort the predictions. If the highest probability is `> Threshold`, the bubble is marked as the answer. 
 - **Erasure Checking:** If highest probability is e.g. 60% and second-highest is 50%, flag this specific row uniquely as `Tie / Ambiguous (Requires Human Review)`. 
 
-### E) `trainer.py`
+### H) `trainer.py`
 - A clean, modular PyTorch training loop wrapper.
 - Must include built-in `MLflow` or `TensorBoard` integration for loss/accuracy curve plotting.
 - Must implement Early Stopping and Model Checkpoint saving (to `Phase_3_Classification/models/`).

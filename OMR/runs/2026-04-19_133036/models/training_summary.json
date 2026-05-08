@@ -1,0 +1,24 @@
+{
+  "best_epoch": 1,
+  "best_metric": 0.43478260869565216,
+  "monitor_metric": "val_f1",
+  "epochs_ran": 1,
+  "class_names": [
+    "blank",
+    "filled"
+  ],
+  "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/2026-04-19_133036/models/best_model.pth",
+  "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/2026-04-19_133036/models/training_epoch_metrics.jsonl",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6021091304719448,
+      "train_acc": 0.5882352941176471,
+      "train_f1": 0.5134029986369831,
+      "val_loss": 0.5061255693435669,
+      "val_acc": 0.7692307692307693,
+      "val_f1": 0.43478260869565216,
+      "timestamp_utc": "2026-04-19T05:30:50.092459Z"
+    }
+  ]
+}

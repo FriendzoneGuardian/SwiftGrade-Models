@@ -1,0 +1,49 @@
+{
+  "project_root": "/root/projects/SwiftGrade-Models",
+  "phase3_src": "/root/projects/SwiftGrade-Models/OMR/Phase_3_Classification/src",
+  "run_dir": "/root/projects/SwiftGrade-Models/OMR/runs/2026-04-19_133010",
+  "dataset_root": "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_3_Ready",
+  "dataset_source": "phase3_ready",
+  "index_path": "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_3_Ready/dataset_index.csv",
+  "indexed_rows": 169125,
+  "sample_mode": "stratified",
+  "class_to_idx": {
+    "blank": 0,
+    "filled": 1
+  },
+  "train_batches": 4,
+  "valid_batches": 1,
+  "model": "DiamondCNN",
+  "model_method": "diamond",
+  "transfer_unfreeze": false,
+  "trainer_summary": {
+    "best_epoch": 1,
+    "best_metric": 0.4444444444444444,
+    "monitor_metric": "val_f1",
+    "epochs_ran": 1,
+    "class_names": [
+      "blank",
+      "filled"
+    ],
+    "best_checkpoint": "/root/projects/SwiftGrade-Models/OMR/runs/2026-04-19_133010/models/best_model.pth",
+    "metrics_jsonl": "/root/projects/SwiftGrade-Models/OMR/runs/2026-04-19_133010/models/training_epoch_metrics.jsonl",
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.6130553185939789,
+        "train_acc": 0.6601941747572816,
+        "train_f1": 0.6286950252343186,
+        "val_loss": 0.660169243812561,
+        "val_acc": 0.8,
+        "val_f1": 0.4444444444444444,
+        "timestamp_utc": "2026-04-19T05:30:23.205187Z"
+      }
+    ]
+  },
+  "row_demo": {
+    "status": "selected",
+    "selected": "C",
+    "confidence": 0.7999999999999999,
+    "margin_top2": 0.78
+  }
+}

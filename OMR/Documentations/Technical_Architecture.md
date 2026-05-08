@@ -37,6 +37,14 @@ Planned upgrade path after two stable binary cycles:
 ### 3. Model Strategies
 - **MobilenetV2:** Used for high-efficiency, industrial-grade texture recognition.
 - **Diamond CNN:** A custom PyTorch architecture designed for complex texture abstraction.
+- **Ascending CNN:** Progressive feature hierarchy for robust binary bubble separation.
+- **Transfer Learning (ResNet18):** Pretrained backbone with a task-specific classification head for rapid adaptation.
+
+### 4. Phase 3 Model Modularity
+- **diamond.py:** Dedicated Diamond methodology implementation.
+- **ascending.py:** Dedicated Ascending methodology implementation.
+- **transfer_learning.py:** Dedicated Transfer Learning methodology implementation.
+- **cnn_models.py:** Compatibility facade that re-exports all model classes for existing consumers.
 
 ## 📈 Performance Targets
 - **Tilt Tolerance:** up to 20°

@@ -1,0 +1,26 @@
+{
+  "run_dir": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618",
+  "threshold": 0.75,
+  "grid_200_sorter_buckets_thr075": {
+    "grid_count": 200,
+    "bucket_counts": {
+      "light_filled": 59,
+      "dark_filled": 50,
+      "blank": 91,
+      "invalid": 0
+    },
+    "bucket_available": {
+      "light_filled": 1992,
+      "dark_filled": 1991,
+      "blank": 18297,
+      "invalid": 0
+    },
+    "darkness_q40": 0.464599609375,
+    "darkness_q60": 0.485595703125,
+    "image_path": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/proof_grid_200_sorter_buckets_thr075.png"
+  },
+  "min_confidence": {
+    "blank_class_on_blank_bucket": 0.0010999441146850586,
+    "filled_class_on_light_filled_bucket": 3.227158913432504e-07
+  }
+}

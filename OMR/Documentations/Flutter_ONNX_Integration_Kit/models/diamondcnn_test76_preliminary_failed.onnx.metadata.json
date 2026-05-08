@@ -1,0 +1,38 @@
+{
+  "artifact_type": "ONNX export",
+  "status": "FAILED_PRELIMINARY_RESEARCH_ARTIFACT",
+  "release_policy": "PRELIMINARY_ONLY_NOT_PRODUCTION_RELEASE",
+  "purpose": "OMR module checkpoint for thesis submission, not final deployment.",
+  "source_run": "strict_2026-04-12_165618",
+  "model_name": "DiamondCNN",
+  "opset_version": 17,
+  "input_spec": {
+    "shape": [
+      "batch_size",
+      3,
+      64,
+      64
+    ],
+    "dtype": "float32"
+  },
+  "output_spec": {
+    "shape": [
+      "batch_size",
+      2
+    ],
+    "dtype": "float32",
+    "semantic": "class logits"
+  },
+  "metrics_statement": {
+    "val_f1": 0.972,
+    "val_accuracy": 0.978,
+    "operating_threshold": 0.8,
+    "confidence_tail_fragility": "confirmed on hard blank and light filled edge cases",
+    "invalid_class_evaluation": "pending"
+  },
+  "backing_report_files": {
+    "training_summary": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/models/training_summary.json",
+    "strict_pipeline_report": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/strict_pipeline_report.json",
+    "threshold75_bucket_metrics": "/root/projects/SwiftGrade-Models/OMR/runs/strict_2026-04-12_165618/thr075_bucket_grid_metrics.json"
+  }
+}

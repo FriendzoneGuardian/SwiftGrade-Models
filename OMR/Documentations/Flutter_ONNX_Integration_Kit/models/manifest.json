@@ -1,0 +1,9 @@
+{
+  "name": "diamondcnn_test76_preliminary_failed",
+  "version": "0.1",
+  "onnx_filename": "diamondcnn_test76_preliminary_failed.onnx",
+  "input_shape": [1,3,64,64],
+  "output_shape": [1,2],
+  "opset": 17,
+  "sha256": "29706042CE1EF47B8964911A4674A27DCC2B311DF08995DAA2CA13070AF36791"
+}
