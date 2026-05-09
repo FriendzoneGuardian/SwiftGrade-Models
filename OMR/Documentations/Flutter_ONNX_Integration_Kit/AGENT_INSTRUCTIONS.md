@@ -20,73 +20,52 @@ Folder contents (current)
 - `models/` (optional): target location for `*.onnx`, `manifest.json`, `checksum.sha256`, and `validation.json`.
 
 Primary tasks for an automation agent or maintainer
-1. Ensure a distributable ONNX model is present at `models/model.onnx` inside the kit.
-2. Produce `models/manifest.json` and `models/checksum.sha256` for each model bundle.
-3. Run the parity validation script (see Validation) and record results in `models/validation.json`.
-4. Keep `model_manifest.template.json` and `strict_report_ref.template.json` up to date when model metadata changes.
+1. Use the ONNX model(s) already included in `./models/` — do NOT create or publish new model artifacts from training inside this kit unless you have explicit permission and provenance documentation.
+2. If a `manifest.json` and `checksum.sha256` are not present for an included model, generate them from the included model file (do not re-export or re-train a model to produce these).
+3. Run the parity validation script (see Validation) against the included model and record results in `models/validation.json`.
+4. Keep `model_manifest.template.json` and `strict_report_ref.template.json` up to date when included model metadata or provenance changes.
 5. When new Dart examples are added, copy into `flutter_dart_sample/` and mirror into the kit folder.
 
-ONNX Export Recipe (how an agent should generate `model.onnx`)
-- Export from a PyTorch checkpoint (example). Run this in the Python environment that has PyTorch matching the training env.
+ONNX Export (ADVANCED, OPTIONAL — DO NOT RUN BY DEFAULT)
+- This kit is intended to distribute and consume pre-built ONNX artifacts that are included under `./models/`.
+- Do NOT generate or publish new model ONNX files from training unless you are the model owner, have explicit permission, and will record provenance in `models/manifest.json`.
+- If you are explicitly instructed and authorized to export a model from a checkpoint, perform that work outside this kit, then copy the resulting `*.onnx` into `./models/` and update the manifest and checksum. Treat export workflows as an out-of-band operation.
 
-Notes
-- This kit is the working root. Output `onnx` files should be written into `./models/`.
-- The checkpoint path is likely outside the kit; set the `CKPT` variable to point to the checkpoint used for export.
-
-Example `export_to_onnx.py` (kit-root relative)
-
-```python
-# export_to_onnx.py (example)
-import torch
-from Phase_3_Classification.src.ascending import AscendingCNN
-
-# Set this to your training checkpoint (outside this kit)
-CKPT = '../path/to/best_model.pth'
-OUT = 'models/ascending_model.onnx'
-
-# instantiate model with the same args used at training
-model = AscendingCNN(num_classes=2)
-state = torch.load(CKPT, map_location='cpu')
-model.load_state_dict(state.get('model_state_dict', state))
-model.eval()
-
-# dummy input matches training contract: [1,3,64,64]
-dummy = torch.randn(1,3,64,64)
-
-torch.onnx.export(model, dummy, OUT,
-                  input_names=['input'], output_names=['logits'],
-                  opset_version=18, do_constant_folding=True)
-print('Wrote', OUT)
-```
-
-Packaging manifest & checksum
-- Create `models/manifest.json` with fields: `name`, `version`, `onnx_filename`, `input_shape`, `output_shape`, `opset`, `sha256`.
-- Compute checksum and save to `models/checksum.sha256` (run from the kit root):
+Packaging manifest & checksum (for included models)
+- If the kit already contains `models/<model>.onnx`, produce `models/manifest.json` and `models/checksum.sha256` for that included file (do not re-export a model to create these files).
+- Example (run from kit root):
 
 ```bash
-# from kit root
-python -c "import hashlib;print(hashlib.sha256(open('models/ascending_model.onnx','rb').read()).hexdigest())" > models/checksum.sha256
+# replace <model.onnx> with the included file name
+python -c "import hashlib;print(hashlib.sha256(open('models/<model.onnx>','rb').read()).hexdigest())" > models/checksum.sha256
 ```
 
 Validation (parity check)
-- Quick Python test using `onnxruntime` to confirm model runs and outputs sane logits (kit-root relative):
+- Run validation only against models that are included in `./models/`. The purpose is to confirm the included artifact runs under ONNXRuntime and produces the expected output shape and reasonable probabilities.
 
 ```python
 import onnxruntime as ort
 import numpy as np
-m = ort.InferenceSession('models/ascending_model.onnx')
-# random input matching [1,3,64,64]
-x = np.random.rand(1,3,64,64).astype('float32')
-res = m.run(None, {'input': x})
-print('logits shape', [r.shape for r in res])
-```
+import json
 
-- Record the output softmax probabilities and save `models/validation.json` with `sample_seed`, `p_filled`, and `logits_shape`.
+MODEL = 'models/<model.onnx>'
+sess = ort.InferenceSession(MODEL)
+seed = 42
+rng = np.random.RandomState(seed)
+x = rng.rand(1,3,64,64).astype('float32')
+res = sess.run(None, {'input': x})
+logits_shape = [r.shape for r in res]
+probs = np.exp(res[0]) / np.exp(res[0]).sum(axis=1, keepdims=True)
+p_filled = float(probs[0,1])
+out = {'sample_seed': seed, 'p_filled': p_filled, 'logits_shape': logits_shape}
+open('models/validation.json','w').write(json.dumps(out,indent=2))
+print('Wrote models/validation.json')
+```
 
 Flutter integration pointers for an agent
 - The kit contains `ort_runner_stub.dart` and service stubs. An agent should:
   - Replace the stub with calls for the chosen Flutter ONNX runtime (e.g., `onnxruntime_mobile`, `onnx_flutter`, or platform channels to native ORT libs).
-  - Ensure the Flutter asset path matches `models/ascending_model.onnx` (relative to the app assets) and that the app loads it with the same input dtype/order (float32, RGB, HWC→CHW, /255.0 normalization).
+  - Ensure the Flutter asset path points to the included model under `assets/models/` or similar, and that the app loads it with the same input dtype/order (float32, RGB, HWC→CHW, /255.0 normalization).
   - Confirm output ordering: class 0 = blank, class 1 = filled (matches repo). Use recommended operating threshold 0.8 by default.
 
 Maintenance notes
