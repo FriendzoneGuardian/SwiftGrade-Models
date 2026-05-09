@@ -18,3 +18,8 @@ Extract the contents of your existing datasets zip straight into this root `Unif
     - Expected files: Multiple Excel files (one per essay set, typically 8 sets)
     - Notebooks reference: `../../Unified_Datasets/` (from `Short_Answer_NLP/notebooks/`)
     - Required columns in Excel: `essay_set`, `essay`, `score` (and optionally `score2` for inter-rater agreement)
+
+#### OCR Module (Handwriting → Text)
+*   **`OCR/`**: Default evaluation dataset location for Module B
+    - **`OCR/test_images/`**: handwriting crops/images used for evaluation
+    - **`OCR/ground_truth.json`**: JSON mapping `filename -> true text` for WER/CER
