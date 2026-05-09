@@ -1,0 +1,35 @@
+{
+  "module": "Module B \u2014 Short Answer OCR",
+  "generated_at": "2026-05-09T17:27:25.803290",
+  "configs": {
+    "A_tesseract": {
+      "wer": null,
+      "cer": null,
+      "drop_rate": null,
+      "notes": ""
+    },
+    "B_trocr_base": {
+      "wer": null,
+      "cer": null,
+      "drop_rate": null,
+      "notes": ""
+    },
+    "B_trocr_small": {
+      "wer": null,
+      "cer": null,
+      "drop_rate": null,
+      "notes": ""
+    },
+    "C_paddleocr": {
+      "wer": null,
+      "cer": null,
+      "drop_rate": null,
+      "notes": ""
+    }
+  },
+  "metric_definitions": {
+    "WER": "(Insertions + Deletions + Substitutions) / total reference words \u2014 lower is better; 0% = perfect",
+    "CER": "Same calculation at character level \u2014 more granular for noisy/complex handwriting",
+    "drop_rate": "% of documents where OCR output is garbled/null/unreadable, blocking NLP scoring"
+  }
+}

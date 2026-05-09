@@ -1,0 +1,143 @@
+{
+  "timestamp_utc": "2026-05-09T09:17:17.013840+00:00",
+  "project_root": "/root/projects/SwiftGrade-Models",
+  "status": "blocked",
+  "blockers": [
+    "No YOLO detector weights (.pt) found in repository for Phase 1 extraction."
+  ],
+  "warnings": [],
+  "dataset": {
+    "phase_1_raw_images": 414,
+    "phase_2_cropped_images": 6000,
+    "phase_3_ready_images": 169125,
+    "phase_1_sample_images": [
+      "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_1_Raw/datasets/valid/images/d3662119-1760567577418.jpg",
+      "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_1_Raw/datasets/valid/images/dd684b02-1761651465268.jpg",
+      "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_1_Raw/datasets/valid/images/0daee0c2-1757935246455.jpg",
+      "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_1_Raw/datasets/valid/images/c8e617a0-1761649729114.jpg",
+      "/root/projects/SwiftGrade-Models/Unified_Datasets/Phase_1_Raw/datasets/valid/images/92e25603-1757932713256.jpg"
+    ]
+  },
+  "assets": {
+    "yolo_weights_pt": [],
+    "classifier_weights_pth": [
+      "OMR/runs/Run 69 - 041226_162804-Diamond-Failed/models/best_model.pth",
+      "OMR/runs/Run 71 - 041226_164034-Diamond-Failed/models/best_model.pth",
+      "OMR/runs/Run 73 - 041926_132939-Ascending-Failed/models/best_model.pth",
+      "OMR/runs/Run 74 - 041926_133010-Diamond-Failed/models/best_model.pth",
+      "OMR/runs/Run 75 - 041926_133036-TransferLearning-Failed/models/best_model.pth",
+      "OMR/runs/Run 76 - 041226_152601-Diamond-Success/models/best_model.pth",
+      "OMR/runs/Run 77 - 041226_165618-Diamond-Failed/models/best_model.pth",
+      "OMR/runs/Run 78 - 041926_134913-Ascending-Success/models/best_model.pth",
+      "OMR/runs/Run 80 - 050826_101848-MobileNetV2-Failed/models/phase_a/best_model.pth",
+      "OMR/runs/Run 81 - 050826_101929-MobileNetV2-Failed/models/phase_a/best_model.pth",
+      "OMR/runs/Run 82 - 050826_102108-MobileNetV2-Failed/models/phase_a/best_model.pth",
+      "OMR/runs/Run 82 - 050826_102108-MobileNetV2-Failed/models/phase_b/best_model.pth",
+      "OMR/runs/Run 83 - 050826_102448-MobileNetV2-Failed/models/phase_a/best_model.pth",
+      "OMR/runs/Run 85 - 050826_102802-MobileNetV2-Failed/models/phase_a/best_model.pth"
+    ]
+  },
+  "checks": {
+    "required_paths": [
+      {
+        "name": "OMR/Phase_1_Extraction/src",
+        "ok": true,
+        "detail": "exists"
+      },
+      {
+        "name": "OMR/Phase_2_Preprocessing/src",
+        "ok": true,
+        "detail": "exists"
+      },
+      {
+        "name": "OMR/Phase_3_Classification/src",
+        "ok": true,
+        "detail": "exists"
+      },
+      {
+        "name": "Unified_Datasets/Phase_1_Raw",
+        "ok": true,
+        "detail": "exists"
+      },
+      {
+        "name": "Unified_Datasets/Phase_2_Cropped",
+        "ok": true,
+        "detail": "exists"
+      },
+      {
+        "name": "Unified_Datasets/Phase_3_Ready",
+        "ok": true,
+        "detail": "exists"
+      }
+    ],
+    "notebooks": [
+      {
+        "name": "/root/projects/SwiftGrade-Models/OMR/notebooks/Phase1_Extraction.ipynb",
+        "ok": true,
+        "detail": "code_cells=7, executed_code_cells=0"
+      },
+      {
+        "name": "/root/projects/SwiftGrade-Models/OMR/notebooks/Phase2_Preprocessing.ipynb",
+        "ok": true,
+        "detail": "code_cells=7, executed_code_cells=0"
+      },
+      {
+        "name": "/root/projects/SwiftGrade-Models/OMR/notebooks/Phase3_Classification.ipynb",
+        "ok": true,
+        "detail": "code_cells=10, executed_code_cells=0"
+      }
+    ],
+    "dependencies": [
+      {
+        "name": "torch",
+        "ok": true,
+        "detail": "module 'torch' importable (version=2.11.0)"
+      },
+      {
+        "name": "torchvision",
+        "ok": true,
+        "detail": "module 'torchvision' importable (version=0.26.0)"
+      },
+      {
+        "name": "ultralytics",
+        "ok": true,
+        "detail": "module 'ultralytics' importable (version=8.4.37)"
+      },
+      {
+        "name": "opencv-python",
+        "ok": true,
+        "detail": "module 'cv2' importable (version=4.13.0.92)"
+      },
+      {
+        "name": "scikit-learn",
+        "ok": true,
+        "detail": "module 'sklearn' importable (version=1.8.0)"
+      },
+      {
+        "name": "albumentations",
+        "ok": true,
+        "detail": "module 'albumentations' importable (version=2.0.8)"
+      },
+      {
+        "name": "mlflow",
+        "ok": true,
+        "detail": "module 'mlflow' importable (version=3.11.1)"
+      },
+      {
+        "name": "pyyaml",
+        "ok": true,
+        "detail": "module 'yaml' importable (version=6.0.3)"
+      },
+      {
+        "name": "pandas",
+        "ok": true,
+        "detail": "module 'pandas' importable (version=2.3.3)"
+      },
+      {
+        "name": "numpy",
+        "ok": true,
+        "detail": "module 'numpy' importable (version=2.4.4)"
+      }
+    ]
+  }
+}

@@ -33,3 +33,7 @@ Unified_Datasets/raw_sheets/
 # OS
 .DS_Store
 Thumbs.db
+
+# Legacy / Original Attempt
+legacy_original_attempt/
+.cache/
