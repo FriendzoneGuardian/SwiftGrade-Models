@@ -1,0 +1,73 @@
+{
+  "module_name": "Short_Answer_NLP",
+  "version": "0.1.0",
+  "description": "Automated Essay Scoring Module using ASAP-AES Dataset",
+  
+  "data": {
+    "input_format": "xlsx",
+    "expected_columns": ["essay_id", "essay_set", "essay", "score"],
+    "validate_on_load": true
+  },
+  
+  "features": {
+    "enable_length": true,
+    "enable_vocabulary": true,
+    "enable_syntax": true,
+    "enable_spelling": true,
+    "feature_list": [
+      "word_count",
+      "sentence_count",
+      "paragraph_count",
+      "avg_sentence_length",
+      "avg_word_length",
+      "unique_word_count",
+      "ttr_ratio",
+      "advanced_word_ratio",
+      "repetition_ratio",
+      "max_parse_depth",
+      "subordinate_clause_ratio",
+      "pronoun_ratio",
+      "misspelling_rate"
+    ]
+  },
+  
+  "modeling": {
+    "model_type": "xgboost",
+    "train_per_essay_set": true,
+    "train_ratio": 0.70,
+    "val_ratio": 0.15,
+    "test_ratio": 0.15,
+    "random_state": 42,
+    
+    "xgboost_params": {
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.1,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "early_stopping_rounds": 20
+    },
+    
+    "evaluation_metric": "qwk",
+    "target_qwk": 0.70
+  },
+  
+  "evaluation": {
+    "confidence_threshold": 0.75,
+    "flag_for_review_below": 0.70,
+    "use_ordinal_regression": true
+  },
+  
+  "feedback": {
+    "include_strengths": true,
+    "include_weaknesses": true,
+    "include_suggestions": true,
+    "format": "structured_json"
+  },
+  
+  "paths": {
+    "models_dir": "./models",
+    "outputs_dir": "./outputs",
+    "configs_dir": "./configs"
+  }
+}
