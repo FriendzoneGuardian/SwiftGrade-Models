@@ -94,6 +94,13 @@ python -m venv .venv
 
 # Confirm Python version (must be 3.10 or 3.11)
 python --version
+
+# Install OCR deps into the active venv
+pip install -r OCR\requirements_ocr.txt
+
+# (Recommended) keep model caches inside the repo for reproducibility
+$env:HF_HOME = "$PWD\.cache\huggingface"
+$env:PADDLE_HOME = "$PWD\.cache\paddle"
 ```
 
 ---

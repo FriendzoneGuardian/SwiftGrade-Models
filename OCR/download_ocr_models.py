@@ -18,8 +18,13 @@ Eval Metrics Initialized:
 Run once before any OCR evaluation notebooks:
     python download_ocr_models.py
 
-All HuggingFace models are cached in:
-    ~/.cache/huggingface/hub/
+By default this script uses **project-local caches** (recommended for reproducibility):
+  - Hugging Face: <repo>/.cache/huggingface/
+  - Paddle:       <repo>/.cache/paddle/
+
+You can override these by setting environment variables before running:
+  - HF_HOME / TRANSFORMERS_CACHE
+  - PADDLE_HOME
 """
 
 import sys
@@ -32,6 +37,30 @@ from datetime import datetime
 
 
 # ─── Constants ─────────────────────────────────────────────────────────────────
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+DEFAULT_HF_HOME = REPO_ROOT / ".cache" / "huggingface"
+DEFAULT_PADDLE_HOME = REPO_ROOT / ".cache" / "paddle"
+
+
+def _ensure_project_caches():
+    """
+    Make model downloads deterministic by defaulting caches to repo-local folders.
+    This avoids "it works on my machine" issues caused by global user caches.
+    """
+    hf_home = os.environ.get("HF_HOME") or os.environ.get("TRANSFORMERS_CACHE")
+    if not hf_home:
+        os.environ["HF_HOME"] = str(DEFAULT_HF_HOME)
+
+    if not os.environ.get("PADDLE_HOME"):
+        os.environ["PADDLE_HOME"] = str(DEFAULT_PADDLE_HOME)
+
+    Path(os.environ["HF_HOME"]).mkdir(parents=True, exist_ok=True)
+    Path(os.environ["PADDLE_HOME"]).mkdir(parents=True, exist_ok=True)
+
+
+_ensure_project_caches()
 
 TROCR_MODELS = [
     (
@@ -488,6 +517,8 @@ def main():
     print(f"  Working dir : {os.getcwd()}")
     print(f"  Script path : {Path(__file__).resolve()}")
     print(f"  Timestamp   : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"  HF_HOME     : {os.environ.get('HF_HOME')}")
+    print(f"  PADDLE_HOME : {os.environ.get('PADDLE_HOME')}")
 
     # Disk space guard (~1.5 GB for both TrOCR models)
     print("\n  Checking disk space...")

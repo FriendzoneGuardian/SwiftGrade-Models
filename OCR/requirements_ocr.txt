@@ -47,3 +47,10 @@ python-dotenv>=1.0.0
 jupyter>=1.0.0
 matplotlib>=3.3.0
 seaborn>=0.11.0
+
+# ── FALLBACK: LayoutLM / Document AI Stack (Optional / Out of Scope) ──
+# Uncomment below if primary OCR configs fail and spatial context is needed.
+# Note: detectron2 often requires manual build or specific wheel for Windows.
+# layoutparser[layoutmodels,tesseract]
+# timm>=0.4.12                  # Backbone for LayoutLMv3
+# albumentations>=1.0.0         # Fast image augmentation for layout
