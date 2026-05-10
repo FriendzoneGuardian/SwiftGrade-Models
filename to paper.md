@@ -14,7 +14,9 @@ The Optical Mark Recognition (OMR) module was evaluated using two primary CNN ar
 | **DiamondCNN** | Run 77 | 99.2% | 0.994 | ✅ Production Ready |
 | **AscendingCNN** | Run 78 | 98.7% | 0.989 | 🟢 Validated Backup |
 
-**Discussion:** The use of **Otsu Binarization** combined with **CLAHE normalization** provided a robust input for the CNNs. The DiamondCNN architecture proved superior in distinguishing between "Smudged Erasures" and "Intentional Fills." This was achieved by increasing the depth of the convolutional layers to capture finer morphological details of the pencil marks. The 99.2% accuracy validates that the OMR pipeline is ready for high-stakes assessment environments.
+**Discussion:** The success of the "From-Scratch" CNNs (Diamond and Ascending) stands in stark contrast to the failure of **Transfer Learning** (Runs 75, 79-85) using pre-trained models like MobileNetV2. 
+
+Transfer Learning failed primarily due to a **Domain Mismatch**: ImageNet-based models are optimized to recognize complex textures and natural gradients (e.g., animals, foliage). In the OMR domain, the features are **Sparse, Binary, and Geometric.** The high-level abstractions learned by pre-trained models proved to be "Feature Overkill," causing the models to misinterpret pencil smudges and paper grain as significant semantic features. By building custom, shallower CNNs specifically designed for **Binarized Input**, we achieved 99%+ accuracy because the models only focused on the geometric density of the "Fill" rather than irrelevant textural artifacts.
 
 ## 4.2 OCR Pre-Flight Evaluation (Module B)
 Module B serves as the bridge between raw handwriting and structured text. We conducted a three-configuration variable test to identify the most resilient engine for student handwriting.
