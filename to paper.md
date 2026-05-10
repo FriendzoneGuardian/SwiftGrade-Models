@@ -11,6 +11,7 @@ The Optical Mark Recognition (OMR) module evolved from an initial **HCI Prototyp
 
 | Architecture | Run ID | Accuracy (Val) | F1-Score (Val) |
 | :--- | :--- | :--- | :--- |
+| *Prototype Zero (Baseline)* | Run 0 | 94.50% | 0.8920 |
 | **DiamondCNN** | Run 77 | 98.14% | 0.9723 |
 | **AscendingCNN** | Run 78 | 98.37% | 0.9757 |
 
