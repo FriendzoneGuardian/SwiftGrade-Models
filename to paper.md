@@ -18,6 +18,14 @@ The Optical Mark Recognition (OMR) module was evaluated using two primary CNN ar
 
 Transfer Learning failed primarily due to a **Domain Mismatch**: ImageNet-based models are optimized to recognize complex textures and natural gradients (e.g., animals, foliage). In the OMR domain, the features are **Sparse, Binary, and Geometric.** The high-level abstractions learned by pre-trained models proved to be "Feature Overkill," causing the models to misinterpret pencil smudges and paper grain as significant semantic features. By building custom, shallower CNNs specifically designed for **Binarized Input**, we achieved 99%+ accuracy because the models only focused on the geometric density of the "Fill" rather than irrelevant textural artifacts.
 
+### 4.1.1 Model Evolution and Stability
+The transition to a custom CNN architecture was preceded by an extensive rule-based "Smoke Test" phase (Runs 3-68). Early successes in **Run 69 (96.68% accuracy)** and **Run 71 (97.71% accuracy)** within only 20 epochs proved the viability of the DiamondCNN architecture. These early runs were iterative "Pattern Changing" tests where we experimented with:
+*   **Otsu vs. Adaptive Thresholding:** Otsu provided a 14% boost in lighting resilience.
+*   **CLAHE Normalization:** Reduced "Grid Noise" from scanned paper fibers.
+*   **Significance Gating:** Eliminated false-positives caused by light pencil erasures.
+
+Final production models (Runs 77 and 78) represent the culmination of these patterns, achieving the highest recorded stability of **98.37%**.
+
 ## 4.2 OCR Pre-Flight Evaluation (Module B)
 Module B serves as the bridge between raw handwriting and structured text. We conducted a three-configuration variable test to identify the most resilient engine for student handwriting.
 
