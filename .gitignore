@@ -12,28 +12,57 @@ build/
 # Jupyter
 .ipynb_checkpoints/
 
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+
 # Environments
 .env
 .venv
 env/
 venv/
 
-# Model weights
+# Model weights and Large Artifacts
 *.pt
 *.pth
 *.onnx
+*.bin
+*.data
+*.onnx.data
+*.zip
+*.rar
+*.7z
+
+# Spreadsheet / Tabular Data
+**/*.xlsx
+**/*.xls
+**/*.csv
+**/*.tsv
 
 # Local datasets (do not commit raw/training assets)
-Unified_Datasets/Phase_1_Raw/
-Unified_Datasets/Phase_2_Cropped/
-Unified_Datasets/Phase_3_Ready/
-Unified_Datasets/manual_labeled/
-Unified_Datasets/raw_sheets/
+Unified_Datasets/
+Short_Answer_NLP/outputs/
+Short_Answer_NLP/models/
+Short_Answer_NLP/runs/
+smoke_test_results.txt
+**/datasets/
+**/logs/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Legacy / Original Attempt
+# Legacy / Archival
 legacy_original_attempt/
+Archive_Legacy_OMR_Phases/
 .cache/

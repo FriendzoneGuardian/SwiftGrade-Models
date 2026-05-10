@@ -17,12 +17,11 @@ try:
     HAS_XGBOOST = True
 except ImportError:
     HAS_XGBOOST = False
-    from sklearn.ensemble import RandomForestRegressor
-
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
-from .metrics import compute_essay_metrics
+from metrics import compute_essay_metrics
 
 logger = logging.getLogger(__name__)
 
@@ -114,7 +113,7 @@ class EssayScoreRegressor:
         
         metrics = compute_essay_metrics(
             y_val, y_pred_val,
-            n_classes=int(score_range[1] - score_range[0] + 1)
+            n_classes=int(score_range[1]) + 1
         )
         
         logger.info(f"Validation QWK: {metrics['qwk']:.3f}, MAE: {metrics['mae']:.3f}")
@@ -139,17 +138,17 @@ class EssayScoreRegressor:
             'subsample': 0.8,
             'colsample_bytree': 0.8,
             'random_state': self.random_state,
+            'early_stopping_rounds': 20,
             'verbose': 0,
         }
         params.update(kwargs)
         
         model = xgb.XGBRegressor(**params)
         
-        # Early stopping
+        # Train
         model.fit(
             X_train, y_train,
             eval_set=[(X_val, y_val)],
-            early_stopping_rounds=20,
             verbose=False
         )
         

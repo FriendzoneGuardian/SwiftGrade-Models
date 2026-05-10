@@ -10,8 +10,8 @@ import logging
 from typing import Dict, Optional
 from pathlib import Path
 
-from .feature_extractor import EssayFeatureExtractor
-from .metrics import compute_prediction_confidence
+from feature_extractor import EssayFeatureExtractor
+from metrics import compute_prediction_confidence
 
 logger = logging.getLogger(__name__)
 

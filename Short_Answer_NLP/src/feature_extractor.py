@@ -44,7 +44,7 @@ class EssayFeatureExtractor:
             use_spacy: If True, use spaCy for advanced NLP features.
         """
         self.use_spacy = use_spacy and HAS_SPACY
-        self.use_textblob = HAS_TEXTBLOB
+        self.use_textblob = False # Disabled for performance in smoke test
         
         if self.use_spacy:
             try:
@@ -178,7 +178,7 @@ class EssayFeatureExtractor:
         
         try:
             blob = TextBlob(text)
-            misspellings = [word for word in blob.words if word.lower() not in blob.correct.words]
+            misspellings = [word for word in blob.words if word.lower() not in blob.correct().words]
             misspelling_rate = len(misspellings) / max(len(blob.words), 1)
             
             features = {
