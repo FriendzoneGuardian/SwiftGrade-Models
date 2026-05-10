@@ -7,9 +7,15 @@ date: 2026-05-10
 # Chapter 4: Results and Discussion
 
 ## 4.1 OMR Classification Results (Module A)
-The Optical Mark Recognition (OMR) module evolved from an initial **HCI Prototype (Prototype Zero)** which achieved **94.50% accuracy** on a restricted 400-sample dataset using TensorFlow/Keras. The subsequent capstone sprint focused on scaling this to a 116k+ sample production environment using two primary custom CNN architectures: DiamondCNN and AscendingCNN. The objective was to achieve high-fidelity classification of handwritten bubble marks while eliminating the "Polarity Inversion" and "Smudge Noise" issues encountered in Phase 1.
+The Optical Mark Recognition (OMR) module underwent a multi-phase architectural evolution before achieving production stability. The development journey is categorized into three distinct eras:
 
-### 4.1.1 Preprocessing and Augmentation Methodology
+### 4.1.1 Legacy Prototype Phase (The YOLO Era)
+Initial development focused on a **YOLOv8n object detection** approach. While successful at localizing answer sheets, this era faced significant challenges in binary state classification.
+*   **Rule-Based Attempts:** Early classifiers utilized **Adaptive Thresholding** and **Geometric Solidity Analysis** (Area/Convex Area ratios). 
+*   **The Lighting Bottleneck:** Rule-based models struggled with non-uniform illumination across different mobile camera sensors, leading to a "Smudge Noise" false-positive rate of ~12% in the initial smoke tests (Runs 3-68).
+*   **Prototype Zero:** The project's neural baseline was established with a TensorFlow/Keras model achieving 94.50% accuracy, proving that deep learning could outperform manual geometry rules.
+
+### 4.1.2 Preprocessing and Augmentation Methodology
 The production OMR pipeline utilized a **"Secret Sauce" Preprocessing Chain** designed to normalize heterogeneous mobile inputs into high-contrast 32×32 grayscale tensors. We evaluated **four distinct pipeline architectures** (Adaptive, Global-Otsu, Rule-Based, and Neural-Custom) before finalizing the following specification:
 
 1.  **Multi-Channel CLAHE:** Applied to Grayscale and Saturation (HSV) channels to equalize uneven shadow casting from mobile flash.
