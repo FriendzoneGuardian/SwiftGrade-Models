@@ -7,7 +7,7 @@ date: 2026-05-10
 # Chapter 4: Results and Discussion
 
 ## 4.1 OMR Classification Results (Module A)
-The Optical Mark Recognition (OMR) module was evaluated using two primary CNN architectures: DiamondCNN and AscendingCNN. The objective was to achieve high-fidelity classification of handwritten bubble marks while eliminating the "Polarity Inversion" and "Smudge Noise" issues encountered in Phase 1.
+The Optical Mark Recognition (OMR) module evolved from an initial **HCI Prototype (Prototype Zero)** which achieved **94.50% accuracy** on a restricted 400-sample dataset using TensorFlow/Keras. The subsequent capstone sprint focused on scaling this to a 116k+ sample production environment using two primary custom CNN architectures: DiamondCNN and AscendingCNN. The objective was to achieve high-fidelity classification of handwritten bubble marks while eliminating the "Polarity Inversion" and "Smudge Noise" issues encountered in Phase 1.
 
 | Architecture | Run ID | Accuracy (Val) | F1-Score (Val) |
 | :--- | :--- | :--- | :--- |
