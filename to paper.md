@@ -9,17 +9,30 @@ date: 2026-05-10
 ## 4.1 OMR Classification Results (Module A)
 The Optical Mark Recognition (OMR) module evolved from an initial **HCI Prototype (Prototype Zero)** which achieved **94.50% accuracy** on a restricted 400-sample dataset using TensorFlow/Keras. The subsequent capstone sprint focused on scaling this to a 116k+ sample production environment using two primary custom CNN architectures: DiamondCNN and AscendingCNN. The objective was to achieve high-fidelity classification of handwritten bubble marks while eliminating the "Polarity Inversion" and "Smudge Noise" issues encountered in Phase 1.
 
+### 4.1.1 Preprocessing and Augmentation Methodology
+The production OMR pipeline utilized a **"Secret Sauce" Preprocessing Chain** designed to normalize heterogeneous mobile inputs into high-contrast 32×32 grayscale tensors. We evaluated **four distinct pipeline architectures** (Adaptive, Global-Otsu, Rule-Based, and Neural-Custom) before finalizing the following specification:
+
+1.  **Multi-Channel CLAHE:** Applied to Grayscale and Saturation (HSV) channels to equalize uneven shadow casting from mobile flash.
+2.  **Significance-Gated Template Subtraction:** A "Master Blank" template was pixel-averaged from confirmed empty bubbles. Subtraction was only applied if the variance exceeded a dynamic significance gate, preventing the amplification of low-level paper grain noise.
+3.  **Aggressive Inner Masking (0.78×):** To eliminate interference from the printed "A–E" ring borders, the analysis was restricted to the inner 78% of the bubble area.
+
+**Augmentation Strategy:** To prevent overfitting on the restricted manual-labeled set, we implemented a real-time augmentation engine. Each training sample underwent randomized transformations:
+*   **Rotation:** ±20° (Simulating manual sheet misalignment).
+*   **Brightness/Contrast Jitter:** ±15% (Simulating varied ambient lighting).
+*   **Gaussian Blur:** $\sigma \in [0.1, 1.0]$ (Simulating out-of-focus camera sensors).
+*   **Scaling:** 0.9x to 1.1x.
+
+This strategy effectively expanded the effective dataset size from 116k to over **169k augmented samples**, ensuring the models learned the geometric density of the "Fill" rather than specific scan artifacts.
+
 | Architecture | Run ID | Accuracy (Val) | F1-Score (Val) |
 | :--- | :--- | :--- | :--- |
 | *Prototype Zero (Baseline)* | Run 0 | 94.50% | 0.8920 |
 | **DiamondCNN** | Run 77 | 98.14% | 0.9723 |
 | **AscendingCNN** | Run 78 | 98.37% | 0.9757 |
 
-**Discussion:** The success of the "From-Scratch" CNNs (Diamond and Ascending) stands in stark contrast to the failure of **Transfer Learning** (Runs 75, 79-85) using pre-trained models like MobileNetV2. 
+**Discussion:** The success of the "From-Scratch" CNNs stands in stark contrast to the failure of **Transfer Learning** (Runs 75, 79-85) using pre-trained models like MobileNetV2. Transfer Learning failed primarily due to a **Domain Mismatch**: ImageNet-based models are optimized to recognize complex textures and natural gradients. In the OMR domain, the features are **Sparse, Binary, and Geometric.** The high-level abstractions learned by pre-trained models proved to be "Feature Overkill," causing the models to misinterpret pencil smudges as significant semantic features.
 
-Transfer Learning failed primarily due to a **Domain Mismatch**: ImageNet-based models are optimized to recognize complex textures and natural gradients (e.g., animals, foliage). In the OMR domain, the features are **Sparse, Binary, and Geometric.** The high-level abstractions learned by pre-trained models proved to be "Feature Overkill," causing the models to misinterpret pencil smudges and paper grain as significant semantic features. By building custom, shallower CNNs specifically designed for **Binarized Input**, we achieved 99%+ accuracy because the models only focused on the geometric density of the "Fill" rather than irrelevant textural artifacts.
-
-### 4.1.1 Model Evolution and Stability
+### 4.1.2 Model Evolution and Stability
 The transition to a custom CNN architecture was preceded by an extensive rule-based "Smoke Test" phase (Runs 3-68). Early successes in **Run 69 (96.68% accuracy)** and **Run 71 (97.71% accuracy)** within only 20 epochs proved the viability of the DiamondCNN architecture. These early runs were iterative "Pattern Changing" tests where we experimented with:
 *   **Otsu vs. Adaptive Thresholding:** Otsu provided a 14% boost in lighting resilience.
 *   **CLAHE Normalization:** Reduced "Grid Noise" from scanned paper fibers.
@@ -41,12 +54,12 @@ Module B serves as the bridge between raw handwriting and structured text. We co
 ## 4.3 NLP Scoring Performance (Module C)
 The development of the scoring engine followed an iterative "Sprint" methodology, moving from traditional BERT architectures to the state-of-the-art DeBERTa-v3.
 
-| Run | Model | Peak Val QWK | Val Loss | Pearson r |
-| :--- | :--- | :--- | :--- | :--- |
-| 4 | BERT-Base-Cased | 0.4546 | 0.6679 | 0.8044 |
-| 5 | BERT (Hybrid Loss) | 0.3729 | 0.8144 | 0.8414 |
-| 6 | DistilBERT | 0.4075 | 0.7360 | 0.8454 |
-| **7** | **DeBERTa-v3-Small** | **0.4749** | **0.0064** | **0.8412** |
+| Run   | Model                | Peak Val QWK | Val Loss   | Pearson r  |
+| :---- | :------------------- | :----------- | :--------- | :--------- |
+| 4     | BERT-Base-Cased      | 0.4546       | 0.6679     | 0.8044     |
+| 5     | BERT (Hybrid Loss)   | 0.3729       | 0.8144     | 0.8414     |
+| 6     | DistilBERT           | 0.4075       | 0.7360     | 0.8454     |
+| **7** | **DeBERTa-v3-Small** | **0.4749**   | **0.0064** | **0.8412** |
 
 **Discussion:** The "Journey to 0.47" highlights the limitations of standard BERT. In Runs 4 and 5, we encountered the **"Mean-Collapse"** phenomenon, where models defaulted to predicting the dataset mean (8.0) because they could not distinguish between high-level structural features. 
 
