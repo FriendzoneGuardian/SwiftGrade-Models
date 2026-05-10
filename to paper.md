@@ -32,12 +32,12 @@ Module B serves as the bridge between raw handwriting and structured text. We co
 ## 4.3 NLP Scoring Performance (Module C)
 The development of the scoring engine followed an iterative "Sprint" methodology, moving from traditional BERT architectures to the state-of-the-art DeBERTa-v3.
 
-| Run | Model | Peak Val QWK | Val Loss | Pearson r | Result |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| 4 | BERT-Base-Cased | 0.4546 | 0.6679 | 0.8044 | FAIL (Pipeline Bugs) |
-| 5 | BERT (Hybrid Loss) | 0.3729 | 0.8144 | 0.8414 | FAIL (Uncalibrated) |
-| 6 | DistilBERT | 0.4075 | 0.7360 | 0.8454 | ✅ Success (Sprint) |
-| **7** | **DeBERTa-v3-Small** | **0.4749** | **0.0064** | **0.8412** | 🥇 **Champion** |
+| Run | Model | Peak Val QWK | Val Loss | Pearson r |
+| :--- | :--- | :--- | :--- | :--- |
+| 4 | BERT-Base-Cased | 0.4546 | 0.6679 | 0.8044 |
+| 5 | BERT (Hybrid Loss) | 0.3729 | 0.8144 | 0.8414 |
+| 6 | DistilBERT | 0.4075 | 0.7360 | 0.8454 |
+| **7** | **DeBERTa-v3-Small** | **0.4749** | **0.0064** | **0.8412** |
 
 **Discussion:** The "Journey to 0.47" highlights the limitations of standard BERT. In Runs 4 and 5, we encountered the **"Mean-Collapse"** phenomenon, where models defaulted to predicting the dataset mean (8.0) because they could not distinguish between high-level structural features. 
 
