@@ -61,7 +61,7 @@ except OSError:
     print("Run: python -m spacy download en_core_web_sm")
     sys.exit(1)
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'src')))
 from metrics import compute_essay_metrics
 
 # ─── Configuration ────────────────────────────────────────────────────────────
@@ -374,9 +374,9 @@ def run_hybrid_training():
     print(f"Transformer     : {TRANSFORMER_NAME}")
     print(f"Target QWK      : >= 0.70 (Wang et al. 2022)\n")
 
-    base_dir  = Path(__file__).parent.parent
-    data_path = base_dir.parent / "Unified_Datasets" / "ASAP-AES" / "training_set_rel3.xlsx"
-    model_dir = base_dir / "models" / f"hybrid_deberta_xgb_config{PIPELINE_CONFIG}"
+    base_dir  = Path(__file__).resolve().parent.parent.parent.parent
+    data_path = base_dir / "Unified_Datasets" / "ASAP-AES" / "training_set_rel3.xlsx"
+    model_dir = base_dir / "Short_Answer_NLP" / "models" / "xgboost_ensemble" / f"hybrid_deberta_xgb_config{PIPELINE_CONFIG}"
     model_dir.mkdir(parents=True, exist_ok=True)
 
     # ── 1. Load Data ──────────────────────────────────────────────────────────

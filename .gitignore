@@ -51,8 +51,6 @@ venv/
 
 # Local datasets (do not commit raw/training assets)
 Unified_Datasets/
-Short_Answer_NLP/outputs/
-Short_Answer_NLP/models/
 Short_Answer_NLP/runs/
 smoke_test_results.txt
 **/datasets/
