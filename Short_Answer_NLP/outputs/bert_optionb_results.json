@@ -1,0 +1,58 @@
+{
+  "date": "2026-05-10 16:59",
+  "model": "BERT-Base-Cased (Option B: MSE+Rank Loss)",
+  "dataset": "ASAP-AES Set 1",
+  "samples": 1783,
+  "split": "1426/178/179",
+  "epochs_run": 5,
+  "best_val_qwk": 0.39040733451849385,
+  "test_qwk": 0.37291573067429656,
+  "test_mae": 0.7821229050279329,
+  "test_rmse": 1.0985007558552362,
+  "test_pearson": 0.8413962712008973,
+  "total_time_s": 10989.3,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.09980607829863132,
+      "val_loss": 0.0996357798576355,
+      "val_qwk": 0.313901991620251,
+      "val_mae": 0.9101123595505618
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.05941412436604167,
+      "val_loss": 0.09482884536618771,
+      "val_qwk": 0.23052231909252177,
+      "val_mae": 1.1404494382022472
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.05626954671057909,
+      "val_loss": 0.09715578154377315,
+      "val_qwk": 0.38449913713336176,
+      "val_mae": 0.7808988764044944
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.051169858621069174,
+      "val_loss": 0.09373763381786969,
+      "val_qwk": 0.2876019336791954,
+      "val_mae": 0.9325842696629213
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.049912064684835895,
+      "val_loss": 0.09353978640359381,
+      "val_qwk": 0.39040733451849385,
+      "val_mae": 0.7528089887640449
+    }
+  ],
+  "loss_config": {
+    "mse_weight": 0.7,
+    "rank_weight": 0.3,
+    "output_temp": 1.5,
+    "sampler": "stratified_by_score"
+  },
+  "status": "PASS"
+}

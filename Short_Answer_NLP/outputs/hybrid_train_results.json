@@ -1,0 +1,7 @@
+{
+  "date": "2026-05-11 01:49",
+  "model": "DeBERTa-v3-Small + spaCy (Frankenstein)",
+  "val_qwk": 0.5027818566914108,
+  "test_qwk": 0.44035079472733496,
+  "test_pearson": 0.8585277574429953
+}

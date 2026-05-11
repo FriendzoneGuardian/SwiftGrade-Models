@@ -1,0 +1,59 @@
+{
+  "date": "2026-05-10 13:23",
+  "model": "BERT-Base-Cased (Fine-tuned)",
+  "dataset": "ASAP-AES Set 1",
+  "samples": 1783,
+  "split": "1248/267/268",
+  "epochs_run": 5,
+  "best_val_qwk": 0.4545908924632653,
+  "test_qwk": 0.43051314693748627,
+  "test_mae": 0.667910447761194,
+  "test_rmse": 0.9522165814091077,
+  "test_pearson": 0.8044067501389208,
+  "total_time_s": 4416.0,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.13089847705179217,
+      "val_loss": 0.015413500884645132,
+      "val_qwk": 0.25554332613485026,
+      "val_mae": 0.9812734082397003
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.012252558568620887,
+      "val_loss": 0.014249810803014396,
+      "val_qwk": 0.2357784066366981,
+      "val_mae": 0.9625468164794008
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.009062577823500853,
+      "val_loss": 0.008682020515057523,
+      "val_qwk": 0.43800676150761236,
+      "val_mae": 0.6629213483146067
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.007314755068341,
+      "val_loss": 0.011253845926596602,
+      "val_qwk": 0.3344860223624087,
+      "val_mae": 0.8202247191011236
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.005171748291617498,
+      "val_loss": 0.008231169140181824,
+      "val_qwk": 0.4545908924632653,
+      "val_mae": 0.6441947565543071
+    }
+  ],
+  "patches": [
+    "score_normalization_0_1",
+    "prediction_clipping_2_12",
+    "warmup_steps_10pct",
+    "torch_adamw_no_correct_bias",
+    "gradient_clipping_1.0"
+  ],
+  "status": "PASS"
+}

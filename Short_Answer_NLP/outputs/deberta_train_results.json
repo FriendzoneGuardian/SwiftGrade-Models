@@ -1,0 +1,48 @@
+{
+  "date": "2026-05-10 19:42",
+  "model": "DeBERTa-v3-small (Failsafe)",
+  "dataset": "ASAP-AES Set 1",
+  "samples": 1783,
+  "split": "1426/178/179",
+  "epochs_run": 5,
+  "best_val_qwk": 0.4749203436310697,
+  "test_qwk": 0.3945011393037998,
+  "test_mae": 0.664804469273743,
+  "test_rmse": 0.9062168892044165,
+  "test_pearson": 0.8314943989427951,
+  "total_time_s": 2049.3,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.14221811478407087,
+      "val_loss": 0.017641816702153947,
+      "val_qwk": 0.1771286185068831
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.014202593268627035,
+      "val_loss": 0.0067817993397410545,
+      "val_qwk": 0.4703416155346191
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.011033982721500421,
+      "val_loss": 0.006357755684035106,
+      "val_qwk": 0.4749203436310697
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.009602832478221314,
+      "val_loss": 0.0066072059057963395,
+      "val_qwk": 0.44460249138353264
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.00860358752691479,
+      "val_loss": 0.006499603082193062,
+      "val_qwk": 0.45038043883071766
+    }
+  ],
+  "status": "PASS",
+  "note": "Failsafe model \u2014 activate only if BERT/DistilBERT/RoBERTa miss QWK 0.70 target"
+}
